@@ -18,6 +18,7 @@
         "@whiskeysockets/baileys": "^6.3.0",
         "axios": "^0.24.0",
         "pm2": "^5.2.0",
+        "bitly": "^7.1.2",
         "browser-id3-writer": "^4.4.0",
         "cheerio": "^1.0.0-rc.10",
         "crypto-js": "^4.1.1",

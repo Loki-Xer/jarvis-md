@@ -12,6 +12,7 @@ Jarvis - Loki-Xer
 const {
 	System,
 	parsedJid,
+	isAdmin,
 	updateProfilePicture,
 } = require("../lib");
 const {exec} = require("child_process");
@@ -90,12 +91,14 @@ System({
 	pattern: "warn",
 	fromMe: true,
 	desc: "Warn a user",
-	type: "user",new cmd 
+	type: "group",
 }, async (message, match) => {
 	const userId = match || message.reply_message.sender;
+	let isadmin = await isAdmin(message, message.user.jid);
+	if (!isadmin) return await message.send("_I'm not admin_");
 	const jid = parsedJid(userId);
 	if (!userId) return message.reply("_Mention or reply to someone_");
-	let reason = message?.reply_message.text || match;
+	let reason = match;
 	reason = reason.replace(/@(\d+)/, "");
 	reason = reason ? reason.length <= 1 : "Reason not Provided";
 	const warnInfo = await saveWarn(userId, reason);
@@ -112,9 +115,11 @@ System({
 	pattern: "resetwarn",
 	fromMe: true,
 	desc: "Reset warnings for a user",
-	type: "user",
+	type: "group",
 }, async (message) => {
 	const userId = match || message.reply_message.sender;
+	let isadmin = await isAdmin(message, message.user.jid);
+	if (!isadmin) return await message.send("_I'm not admin_");
 	const jid = parsedJid(userId);
 	if (!userId) return message.reply("_Mention or reply to someone_");
 	await resetWarn(userId);

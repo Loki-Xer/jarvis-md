@@ -19,6 +19,11 @@
             "required": true,
             "value":"ʟᴏᴋɪ-xᴇʀ;ᴊᴀʀᴠɪꜱ;https://i.imgur.com/VgxJeCm.jpeg"
         },
+        "WARN_COUNT": {
+            "description": "warn count",
+            "required": true,
+            "value":"3"
+        },
         "AUTO_STATUS_VIEWS": {
             "description": "auto status views",
             "required": true,
